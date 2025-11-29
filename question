@@ -1,0 +1,342 @@
+const questionsData = {
+  fullstack: {
+    "0-2": [
+      {
+        question: "What is React?",
+        correctAns: "React is a JavaScript library for building user interfaces."
+      },
+      {
+        question: "What is JSX?",
+        correctAns: "JSX is a syntax extension for JavaScript that looks like HTML and is used with React to describe UI elements."
+      },
+      {
+        question: "What is a component in React?",
+        correctAns: "A component is a reusable piece of UI that can have its own state and logic."
+      },
+      {
+        question: "What is useState in React?",
+        correctAns: "useState is a React Hook that allows you to add state to functional components."
+      },
+      {
+        question: "What is the Virtual DOM?",
+        correctAns: "The Virtual DOM is a lightweight copy of the real DOM that React uses to efficiently update the UI."
+      }
+    ],
+    "3-5": [
+      {
+        question: "What is the difference between useEffect and useLayoutEffect?",
+        correctAns: "useEffect runs after render and paint, while useLayoutEffect runs synchronously after render but before paint."
+      },
+      {
+        question: "Explain React Server Components.",
+        correctAns: "React Server Components allow components to render on the server, reducing client-side JavaScript and improving performance."
+      },
+      {
+        question: "What is the purpose of React Query or TanStack Query?",
+        correctAns: "It is a library for managing server-state (fetching, caching, synchronizing) in React applications."
+      },
+      {
+        question: "What is Next.js and its key features?",
+        correctAns: "Next.js is a React framework with features like SSR, SSG, API routes, file-based routing, and automatic code splitting."
+      },
+      {
+        question: "How does Node.js handle concurrency?",
+        correctAns: "Node.js uses a single-threaded event loop with non-blocking I/O to handle concurrency efficiently."
+      }
+    ],
+    "5-10": [
+      {
+        question: "Explain the React Fiber architecture.",
+        correctAns: "React Fiber is a reimplementation of the reconciliation engine that enables incremental rendering, prioritization, and suspension."
+      },
+      {
+        question: "What are micro-frontends and how to implement them?",
+        correctAns: "Micro-frontends break a frontend monolith into smaller, independently deployable apps, often using module federation or iframes."
+      },
+      {
+        question: "How do you optimize bundle size in a large React app?",
+        correctAns: "Use code splitting, dynamic imports, tree shaking, analyzing bundles with tools like Webpack Bundle Analyzer, and lazy loading."
+      },
+      {
+        question: "What is the difference between monorepo and multi-repo architecture?",
+        correctAns: "Monorepo keeps all code in one repo for consistency; multi-repo separates services for isolation and independent scaling."
+      },
+      {
+        question: "Explain event-driven architecture with Kafka or RabbitMQ in a full-stack system.",
+        correctAns: "It decouples services using message queues; producers publish events, consumers react asynchronously for scalability and resilience."
+      }
+    ]
+  },
+  webdeveloper: {
+    "0-2": [
+      {
+        question: "What is REST API?",
+        correctAns: "REST API allows communication between client and server using standard HTTP methods."
+      },
+      {
+        question: "What is the difference between HTML and XHTML?",
+        correctAns: "XHTML is stricter and must follow XML rules, while HTML is more forgiving."
+      },
+      {
+        question: "What is the difference between GET and POST?",
+        correctAns: "GET is used to retrieve data, while POST is used to send data to the server."
+      },
+      {
+        question: "What is CSS Flexbox?",
+        correctAns: "Flexbox is a layout module that allows easy alignment and spacing of items within a container."
+      },
+      {
+        question: "What is a Semantic Tag in HTML?",
+        correctAns: "Semantic tags clearly describe their meaning in HTML, like <header>, <footer>, and <article>."
+      }
+    ],
+    "3-5": [
+      {
+        question: "What is the difference between cookies, localStorage, and sessionStorage?",
+        correctAns: "Cookies are sent with every request; localStorage persists until cleared; sessionStorage lasts only for the session."
+      },
+      {
+        question: "Explain CORS and how to handle it.",
+        correctAns: "CORS (Cross-Origin Resource Sharing) restricts cross-domain requests; handled via server headers like Access-Control-Allow-Origin."
+      },
+      {
+        question: "What are CSS Grid and when to use it over Flexbox?",
+        correctAns: "CSS Grid is for two-dimensional layouts; use over Flexbox when controlling both rows and columns is needed."
+      },
+      {
+        question: "What is the difference between == and === in JavaScript?",
+        correctAns: "== checks value with type coercion; === checks value and type without coercion."
+      },
+      {
+        question: "What is a closure in JavaScript?",
+        correctAns: "A closure is a function that retains access to its lexical scope even when executed outside that scope."
+      }
+    ],
+    "5-10": [
+      {
+        question: "Explain the critical rendering path in browsers.",
+        correctAns: "It includes DOM → CSSOM → Render Tree → Layout → Paint; optimizing it improves perceived performance."
+      },
+      {
+        question: "What are web workers and service workers?",
+        correctAns: "Web workers run scripts in background threads; service workers enable offline, caching, and push notifications."
+      },
+      {
+        question: "How do you implement authentication with JWT and refresh tokens?",
+        correctAns: "JWT for stateless auth; store in httpOnly cookie or memory; use refresh tokens to issue new access tokens securely."
+      },
+      {
+        question: "What is the difference between progressive enhancement and graceful degradation?",
+        correctAns: "Progressive enhancement starts with core functionality and adds features; graceful degradation starts rich and falls back."
+      },
+      {
+        question: "Explain WebSockets vs Server-Sent Events (SSE).",
+        correctAns: "WebSockets enable full-duplex communication; SSE is server-to-client only, simpler for real-time updates like notifications."
+      }
+    ]
+  },
+  dataanalyst: {
+    "0-2": [
+      {
+        question: "What is the difference between mean, median, and mode?",
+        correctAns: "Mean is average; median is middle value when sorted; mode is most frequent value."
+      },
+      {
+        question: "What is SQL and why is it used?",
+        correctAns: "SQL (Structured Query Language) is used to manage and query relational databases."
+      },
+      {
+        question: "What is a primary key in a database?",
+        correctAns: "A primary key is a unique identifier for each record in a table."
+      },
+      {
+        question: "What is data normalization?",
+        correctAns: "Normalization organizes data to reduce redundancy and improve integrity using forms like 1NF, 2NF, 3NF."
+      },
+      {
+        question: "What is a dashboard in data analytics?",
+        correctAns: "A dashboard is a visual interface displaying key metrics and KPIs for quick insights."
+      }
+    ],
+    "3-5": [
+      {
+        question: "Explain the difference between INNER JOIN and LEFT JOIN.",
+        correctAns: "INNER JOIN returns matching rows; LEFT JOIN returns all rows from left table and matched from right."
+      },
+      {
+        question: "What is ETL (Extract, Transform, Load)?",
+        correctAns: "ETL is a process to extract data from sources, transform it (clean, format), and load into a data warehouse."
+      },
+      {
+        question: "What is a star schema in data warehousing?",
+        correctAns: "Star schema has a central fact table connected to dimension tables, optimized for querying."
+      },
+      {
+        question: "What is cohort analysis?",
+        correctAns: "Cohort analysis groups users by shared characteristics (e.g., signup month) to track behavior over time."
+      },
+      {
+        question: "What is A/B testing?",
+        correctAns: "A/B testing compares two versions (A and B) to determine which performs better on a metric."
+      }
+    ],
+    "5-10": [
+      {
+        question: "Explain data lake vs data warehouse.",
+        correctAns: "Data lake stores raw, unstructured data at scale; data warehouse stores structured, processed data for analytics."
+      },
+      {
+        question: "What is dbt (data build tool) and its core concepts?",
+        correctAns: "dbt transforms data in warehouses using SQL models, tests, and documentation; supports modular analytics engineering."
+      },
+      {
+        question: "How do you handle slowly changing dimensions (SCD)?",
+        correctAns: "Type 1: overwrite; Type 2: add new row with version/effective dates; Type 3: add new column for change."
+      },
+      {
+        question: "What is data mesh architecture?",
+        correctAns: "Data mesh treats data as a product, with domain-oriented ownership, self-serve infrastructure, and federated governance."
+      },
+      {
+        question: "Explain the role of data governance in analytics.",
+        correctAns: "It ensures data quality, security, compliance, and accessibility through policies, standards, and stewardship."
+      }
+    ]
+  },
+  ai: {
+    "0-2": [
+      {
+        question: "What is Artificial Intelligence (AI)?",
+        correctAns: "AI is the simulation of human intelligence in machines to perform tasks like reasoning, learning, and problem-solving."
+      },
+      {
+        question: "What is the difference between AI, ML, and DL?",
+        correctAns: "AI is the broad field; ML is a subset using data to learn; DL is a subset of ML using neural networks with many layers."
+      },
+      {
+        question: "What is a neural network?",
+        correctAns: "A neural network is a computational model inspired by the brain, consisting of layers of interconnected nodes (neurons)."
+      },
+      {
+        question: "What is supervised vs unsupervised learning?",
+        correctAns: "Supervised uses labeled data; unsupervised finds patterns in unlabeled data."
+      },
+      {
+        question: "What is overfitting in machine learning?",
+        correctAns: "Overfitting occurs when a model learns noise in training data, performing poorly on new data."
+      }
+    ],
+    "3-5": [
+      {
+        question: "What is transfer learning?",
+        correctAns: "Transfer learning reuses a pre-trained model on a new, related task to improve performance with less data."
+      },
+      {
+        question: "Explain gradient descent and its types.",
+        correctAns: "Gradient descent minimizes loss by adjusting weights; types: batch, stochastic (SGD), mini-batch."
+      },
+      {
+        question: "What is a confusion matrix?",
+        correctAns: "A table showing true positives, true negatives, false positives, and false negatives to evaluate classification."
+      },
+      {
+        question: "What are activation functions? Name a few.",
+        correctAns: "They introduce non-linearity; examples: ReLU, Sigmoid, Tanh, Leaky ReLU."
+      },
+      {
+        question: "What is backpropagation?",
+        correctAns: "Backpropagation computes gradients of loss with respect to weights by propagating errors backward through the network."
+      }
+    ],
+    "5-10": [
+      {
+        question: "Explain attention mechanisms in transformers.",
+        correctAns: "Attention computes weighted importance of input tokens, enabling models to focus on relevant parts dynamically."
+      },
+      {
+        question: "What is self-supervised learning?",
+        correctAns: "It generates labels from the data itself (e.g., masking tokens in BERT) to pre-train models without human annotation."
+      },
+      {
+        question: "How do diffusion models work (e.g., Stable Diffusion)?",
+        correctAns: "They add noise to data gradually, then learn to reverse the process to generate new samples from noise."
+      },
+      {
+        question: "What is model quantization and its benefits?",
+        correctAns: "It reduces precision (e.g., float32 to int8) to decrease model size, memory, and inference time with minimal accuracy loss."
+      },
+      {
+        question: "Explain federated learning and its privacy benefits.",
+        correctAns: "Models train locally on devices; only updates are shared centrally, keeping raw data private."
+      }
+    ]
+  },
+  ml: {
+    "0-2": [
+      {
+        question: "What is a feature in machine learning?",
+        correctAns: "A feature is an individual measurable property or characteristic of a phenomenon being observed."
+      },
+      {
+        question: "What is train-test split?",
+        correctAns: "It divides data into training (to fit model) and testing (to evaluate) sets to prevent overfitting."
+      },
+      {
+        question: "What is bias-variance tradeoff?",
+        correctAns: "Bias is error from wrong assumptions; variance is sensitivity to data fluctuations; tradeoff balances under/overfitting."
+      },
+      {
+        question: "What is cross-validation?",
+        correctAns: "It splits data into k folds, trains on k-1, tests on 1, repeats k times to assess model stability."
+      },
+      {
+        question: "What is precision, recall, and F1-score?",
+        correctAns: "Precision: TP/(TP+FP); Recall: TP/(TP+FN); F1: harmonic mean of precision and recall."
+      }
+    ],
+    "3-5": [
+      {
+        question: "Explain regularization (L1 vs L2).",
+        correctAns: "L1 (Lasso) adds absolute weights (promotes sparsity); L2 (Ridge) adds squared weights (shrinks large weights)."
+      },
+      {
+        question: "What are ensemble methods? Name two.",
+        correctAns: "They combine multiple models; examples: Random Forest (bagging), Gradient Boosting (boosting)."
+      },
+      {
+        question: "What is hyperparameter tuning?",
+        correctAns: "It finds optimal model settings (e.g., learning rate) using grid search, random search, or Bayesian optimization."
+      },
+      {
+        question: "Explain PCA (Principal Component Analysis).",
+        correctAns: "PCA reduces dimensionality by projecting data onto principal components that maximize variance."
+      },
+      {
+        question: "What is the curse of dimensionality?",
+        correctAns: "As dimensions increase, data becomes sparse, distances lose meaning, and models need more data."
+      }
+    ],
+    "5-10": [
+      {
+        question: "Explain XGBoost and its advantages.",
+        correctAns: "XGBoost is a scalable gradient boosting library with regularization, parallel processing, and handling missing values."
+      },
+      {
+        question: "What is online learning (incremental learning)?",
+        correctAns: "Models update with streaming data incrementally, useful for large or evolving datasets."
+      },
+      {
+        question: "How do you handle imbalanced datasets?",
+        correctAns: "Use oversampling (SMOTE), undersampling, class weights, or anomaly detection techniques."
+      },
+      {
+        question: "Explain SHAP and LIME for model interpretability.",
+        correctAns: "SHAP assigns consistent feature contributions; LIME explains individual predictions with local surrogates."
+      },
+      {
+        question: "What is MLOps and its key components?",
+        correctAns: "MLOps applies DevOps to ML: version control, CI/CD, monitoring, reproducibility, and automated retraining."
+      }
+    ]
+  }
+};
