@@ -18,7 +18,7 @@
 ---
 
 ## Live Demo  
-[intervuai.vercel.app](https://intervuai.vercel.app) *(Coming Soon)*
+[intervuai.vercel.app](https://intervu-ai-five.vercel.app/)
 
 ---
 
