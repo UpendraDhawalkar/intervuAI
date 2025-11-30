@@ -103,7 +103,10 @@ export default function HowItWorksPage() {
   const [translatedSteps, setTranslatedSteps] = useState(null);
   const router = useRouter();
 
-  const { t, translating, language } = useTranslatedText(BASE_TEXT, "howItWorksPage");
+  const { t, translating, language } = useTranslatedText(
+    BASE_TEXT,
+    "howItWorksPage"
+  );
 
   useEffect(() => {
     const translateSteps = async () => {
@@ -152,25 +155,26 @@ ${json}
   };
 
   return (
-    <div className="p-10 max-w-6xl mx-auto text-gray-900 dark:text-gray-100">
-      <h1 className="text-4xl font-bold text-center text-primary mb-10">
+    <div className="px-4 sm:px-6 lg:px-10 py-8 max-w-6xl mx-auto text-gray-900 dark:text-gray-100">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center text-primary mb-6 sm:mb-10">
         {t("heading")}
       </h1>
 
       {translating && (
-        <p className="text-center text-sm text-gray-500 animate-pulse">
+        <p className="text-center text-xs sm:text-sm text-gray-500 animate-pulse mb-4">
           Translating UI...
         </p>
       )}
 
-      <div className="flex flex-col gap-2 mb-12">
-        <div className="flex justify-center items-center gap-6">
-          <div className="flex gap-2">
+      {/* Top buttons */}
+      <div className="flex flex-col gap-4 mb-8 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:items-center gap-4">
+          <div className="flex flex-wrap justify-center md:justify-start gap-2">
             {["dashboard", "questions", "upgrade"].map((btn) => (
               <button
                 key={btn}
                 onClick={() => handleScroll(btn)}
-                className="px-5 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition"
+                className="px-4 py-2 text-sm sm:text-base bg-primary text-white rounded-lg hover:bg-primary/80 transition"
               >
                 {btn.charAt(0).toUpperCase() + btn.slice(1)}
               </button>
@@ -178,25 +182,29 @@ ${json}
           </div>
 
           <button
-            onClick={() => router.push("/dashboard/how-it-works/project-setup")}
-            className="ml-auto px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
+            onClick={() =>
+              router.push("/dashboard/how-it-works/project-setup")
+            }
+            className="w-full sm:w-auto md:ml-auto px-4 sm:px-5 py-2 text-sm sm:text-base bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition"
           >
             {t("viewProjectSetup")}
           </button>
         </div>
       </div>
 
-      <hr className="border-gray-300 dark:border-gray-700 my-6" />
+      <hr className="border-gray-300 dark:border-gray-700 my-4 sm:my-6" />
 
-      <div className="flex flex-col gap-16">
+      {/* Steps */}
+      <div className="flex flex-col gap-12 sm:gap-14 md:gap-16">
         {finalSteps.map((step, index) => (
           <React.Fragment key={step.id}>
             <div
               id={step.id}
-              className={`flex flex-col md:flex-row items-center gap-10 ${
+              className={`flex flex-col md:flex-row items-center gap-8 sm:gap-10 ${
                 index % 2 === 1 ? "md:flex-row-reverse" : ""
               }`}
             >
+              {/* Image section */}
               <div className="w-full md:w-1/2">
                 <div
                   className="relative cursor-zoom-in group"
@@ -207,34 +215,37 @@ ${json}
                     alt={step.title}
                     width={600}
                     height={400}
-                    className="rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-transform group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 70vw, 50vw"
+                    className="w-full h-auto rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-transform group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white dark:text-gray-200 text-sm font-medium transition">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white dark:text-gray-200 text-xs sm:text-sm font-medium transition">
                     {t("clickToZoom")}
                   </div>
                 </div>
               </div>
 
+              {/* Text section */}
               <div className="w-full md:w-1/2">
-                <h2 className="text-2xl font-semibold mb-3">
+                <h2 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-center md:text-left">
                   {step.title}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center md:text-left">
                   {step.description}
                 </p>
               </div>
             </div>
 
             {index < steps.length - 1 && (
-              <div className="border-t border-gray-300 dark:border-gray-700 my-8"></div>
+              <div className="border-t border-gray-300 dark:border-gray-700 my-4 sm:my-6"></div>
             )}
           </React.Fragment>
         ))}
       </div>
 
+      {/* Zoom overlay */}
       {zoomImage && (
         <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4"
           onClick={() => setZoomImage(null)}
         >
           <Image
@@ -242,7 +253,8 @@ ${json}
             alt="Zoomed Screenshot"
             width={900}
             height={600}
-            className="rounded-lg shadow-lg"
+            sizes="100vw"
+            className="max-h-[90vh] w-auto h-auto rounded-lg shadow-lg object-contain"
           />
         </div>
       )}

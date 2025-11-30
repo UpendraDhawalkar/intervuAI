@@ -265,180 +265,204 @@ ${jsonString}
       : translatedFeedbackList;
 
   return (
-    <div className="p-10 text-gray-900 dark:text-gray-100">
-      {items?.length === 0 ? (
-        <h2 className="font-bold text-xl text-gray-500 dark:text-gray-300">
-          {t("noFeedback")}
-        </h2>
-      ) : (
-        <>
-          <div
-            ref={reportRef}
-            className="
-              p-6 rounded-lg shadow-sm border 
-              bg-white text-gray-900
-              dark:bg-[#0f172a] dark:text-gray-100 dark:border-gray-700
-              transition-all duration-300
-            "
-          >
-            <div className="flex items-center justify-between mb-2">
-              <div className="text-center flex-1">
-                <h1 className="text-4xl font-bold">{t("reportTitle")}</h1>
-                <h2 className="font-semibold mt-1">
-                  {t("sessionAnalysis")}
-                </h2>
-              </div>
-              {translating && (
-                <span className="text-xs text-gray-500 animate-pulse">
-                  Translating UI...
-                </span>
-              )}
-            </div>
-
-            <hr className="my-4 border-gray-300 dark:border-gray-700" />
-
-            <div className="text-sm pb-3">
-              <p>
-                <strong>{t("emailLabel")}:</strong> {userEmail}
-              </p>
-              <p>
-                <strong>{t("interviewIdLabel")}:</strong> {interviewId}
-              </p>
-              <p>
-                <strong>{t("dateLabel")}:</strong>{" "}
-                {interviewInfo?.createdAt
-                  ? new Date(interviewInfo.createdAt).toLocaleString()
-                  : t("notAvailable")}
-              </p>
-              <p>
-                <strong>{t("positionLabel")}:</strong>{" "}
-                {interviewInfo?.jobPosition}
-              </p>
-              <p>
-                <strong>{t("experienceLabel")}:</strong>{" "}
-                {interviewInfo?.jobExperience}
-              </p>
-            </div>
-
-            <h2 className="text-primary text-lg my-3">
-              {t("overallRatingLabel")}:{" "}
-              <strong>{overallRating}/10</strong>
-            </h2>
-
-            <div className="mt-5 p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900 dark:text-yellow-200">
-              <h3 className="font-semibold mb-2">{t("noteTitle")}</h3>
-              <p>{t("noteText")}</p>
-            </div>
-
-            <div className="mt-5 p-4 rounded-lg bg-red-50 dark:bg-red-900 dark:text-red-200">
-              <h3 className="font-semibold mb-2">
-                {t("violationsTitle")}
-              </h3>
-              <p>
-                {t("timeLabel")}:{" "}
-                {violations.createdAt
-                  ? (() => {
-                      const dateValue =
-                        typeof violations.createdAt === "string"
-                          ? violations.createdAt
-                          : violations.createdAt.toISOString();
-
-                      return dateValue.replace("T", " ").split(".")[0];
-                    })()
-                  : t("notAvailable")}
-              </p>
-              <ul>
-                <li>
-                  {t("faceAbsentLabel")}:{" "}
-                  <strong>{violations.face_absent}</strong>
-                </li>
-                <li>
-                  {t("focusLostLabel")}:{" "}
-                  <strong>{violations.focus_lost}</strong>
-                </li>
-                <li>
-                  {t("unauthorizedItemsLabel")}:{" "}
-                  <strong>{violations.unauthorized_item}</strong>
-                </li>
-              </ul>
-            </div>
-
-            <h2 className="text-sm mt-6 mb-3">
-              {t("questionWiseLabel")}
-            </h2>
-            {items.map((item, index) => (
-              <div
-                key={index}
-                className="
-                  p-4 rounded-lg mb-4 border 
-                  bg-gray-50 dark:bg-[#1e293b] 
-                  text-gray-900 dark:text-gray-200 
-                "
-              >
-                <p className="font-semibold">
-                  Q{index + 1}. {item.question}
-                </p>
-                <p className="text-red-600 dark:text-red-400 mt-2">
-                  <strong>{t("ratingLabel")}:</strong> {item.rating}/10
-                </p>
-                <p className="text-blue-900 dark:text-blue-400 mt-1">
-                  <strong>{t("yourAnswerLabel")}:</strong>{" "}
-                  {item.userAns}
-                </p>
-                <p className="text-green-900 dark:text-green-400 mt-1">
-                  <strong>{t("correctAnswerLabel")}:</strong>{" "}
-                  {item.correctAns}
-                </p>
-                <p className="text-purple-700 dark:text-purple-300 mt-1">
-                  <strong>{t("feedbackLabel")}:</strong>{" "}
-                  {item.feedback}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {showPreview && (
-            <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-              <div className="bg-white dark:bg-[#0f172a] p-6 rounded-lg shadow-xl w-11/12 h-[90vh] overflow-y-auto">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="font-bold text-lg">
-                    {t("previewTitle")}
+    <div className="px-4 sm:px-6 lg:px-10 py-6 sm:py-8 text-gray-900 dark:text-gray-100">
+      <div className="max-w-5xl mx-auto">
+        {items?.length === 0 ? (
+          <h2 className="font-bold text-lg sm:text-xl text-gray-500 dark:text-gray-300 text-center">
+            {t("noFeedback")}
+          </h2>
+        ) : (
+          <>
+            <div
+              ref={reportRef}
+              className="
+                p-4 sm:p-6 rounded-lg shadow-sm border 
+                bg-white text-gray-900
+                dark:bg-[#0f172a] dark:text-gray-100 dark:border-gray-700
+                transition-all duration-300
+              "
+            >
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3 sm:mb-4">
+                <div className="text-center sm:text-left flex-1">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+                    {t("reportTitle")}
+                  </h1>
+                  <h2 className="font-semibold mt-1 text-sm sm:text-base">
+                    {t("sessionAnalysis")}
                   </h2>
-                  <Button
-                    variant="ghost"
-                    onClick={() => setShowPreview(false)}
-                  >
-                    {t("closeBtn")}
-                  </Button>
                 </div>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: reportRef.current?.outerHTML || "",
-                  }}
-                />
+                {translating && (
+                  <span className="text-xs text-gray-500 animate-pulse self-center sm:self-start">
+                    Translating UI...
+                  </span>
+                )}
               </div>
+
+              <hr className="my-3 sm:my-4 border-gray-300 dark:border-gray-700" />
+
+              {/* Basic Info */}
+              <div className="text-xs sm:text-sm pb-3 space-y-1">
+                <p className="break-words">
+                  <strong>{t("emailLabel")}:</strong> {userEmail}
+                </p>
+                <p className="break-words">
+                  <strong>{t("interviewIdLabel")}:</strong> {interviewId}
+                </p>
+                <p>
+                  <strong>{t("dateLabel")}:</strong>{" "}
+                  {interviewInfo?.createdAt
+                    ? new Date(interviewInfo.createdAt).toLocaleString()
+                    : t("notAvailable")}
+                </p>
+                <p className="break-words">
+                  <strong>{t("positionLabel")}:</strong>{" "}
+                  {interviewInfo?.jobPosition}
+                </p>
+                <p className="break-words">
+                  <strong>{t("experienceLabel")}:</strong>{" "}
+                  {interviewInfo?.jobExperience}
+                </p>
+              </div>
+
+              {/* Overall Rating */}
+              <h2 className="text-primary text-base sm:text-lg my-3">
+                {t("overallRatingLabel")}:{" "}
+                <strong>{overallRating}/10</strong>
+              </h2>
+
+              {/* Note */}
+              <div className="mt-4 p-3 sm:p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900 dark:text-yellow-200 text-xs sm:text-sm">
+                <h3 className="font-semibold mb-1 sm:mb-2">
+                  {t("noteTitle")}
+                </h3>
+                <p>{t("noteText")}</p>
+              </div>
+
+              {/* Violations */}
+              <div className="mt-4 sm:mt-5 p-3 sm:p-4 rounded-lg bg-red-50 dark:bg-red-900 dark:text-red-200 text-xs sm:text-sm">
+                <h3 className="font-semibold mb-1 sm:mb-2">
+                  {t("violationsTitle")}
+                </h3>
+                <p>
+                  {t("timeLabel")}:{" "}
+                  {violations.createdAt
+                    ? (() => {
+                        const dateValue =
+                          typeof violations.createdAt === "string"
+                            ? violations.createdAt
+                            : violations.createdAt.toISOString();
+
+                        return dateValue.replace("T", " ").split(".")[0];
+                      })()
+                    : t("notAvailable")}
+                </p>
+                <ul className="mt-1 space-y-0.5">
+                  <li>
+                    {t("faceAbsentLabel")}:{" "}
+                    <strong>{violations.face_absent}</strong>
+                  </li>
+                  <li>
+                    {t("focusLostLabel")}:{" "}
+                    <strong>{violations.focus_lost}</strong>
+                  </li>
+                  <li>
+                    {t("unauthorizedItemsLabel")}:{" "}
+                    <strong>{violations.unauthorized_item}</strong>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Question-wise Feedback */}
+              <h2 className="text-xs sm:text-sm mt-5 mb-3">
+                {t("questionWiseLabel")}
+              </h2>
+              {items.map((item, index) => (
+                <div
+                  key={index}
+                  className="
+                    p-3 sm:p-4 rounded-lg mb-3 sm:mb-4 border 
+                    bg-gray-50 dark:bg-[#1e293b] 
+                    text-gray-900 dark:text-gray-200 
+                    text-xs sm:text-sm
+                  "
+                >
+                  <p className="font-semibold">
+                    Q{index + 1}. {item.question}
+                  </p>
+                  <p className="text-red-600 dark:text-red-400 mt-1">
+                    <strong>{t("ratingLabel")}:</strong> {item.rating}/10
+                  </p>
+                  <p className="text-blue-900 dark:text-blue-400 mt-1 break-words">
+                    <strong>{t("yourAnswerLabel")}:</strong>{" "}
+                    {item.userAns}
+                  </p>
+                  <p className="text-green-900 dark:text-green-400 mt-1 break-words">
+                    <strong>{t("correctAnswerLabel")}:</strong>{" "}
+                    {item.correctAns}
+                  </p>
+                  <p className="text-purple-700 dark:text-purple-300 mt-1 break-words">
+                    <strong>{t("feedbackLabel")}:</strong>{" "}
+                    {item.feedback}
+                  </p>
+                </div>
+              ))}
             </div>
-          )}
-        </>
-      )}
 
-      <div className="flex gap-4 mt-6">
-        <Button onClick={() => setShowPreview(true)} variant="outline">
-          <Eye className="mr-2 h-4 w-4" />
-          {t("previewBtn")}
-        </Button>
+            {/* Preview Modal */}
+            {showPreview && (
+              <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 px-3">
+                <div className="bg-white dark:bg-[#0f172a] p-4 sm:p-6 rounded-lg shadow-xl w-full max-w-5xl h-[90vh] overflow-y-auto">
+                  <div className="flex justify-between items-center mb-3 sm:mb-4">
+                    <h2 className="font-bold text-base sm:text-lg">
+                      {t("previewTitle")}
+                    </h2>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setShowPreview(false)}
+                    >
+                      {t("closeBtn")}
+                    </Button>
+                  </div>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: reportRef.current?.outerHTML || "",
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+          </>
+        )}
 
-        <Button onClick={handleDownloadReport} className="bg-blue-600">
-          <Download className="mr-2 h-4 w-4" />
-          {t("downloadBtn")}
-        </Button>
+        {/* Bottom Buttons */}
+        <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 justify-center sm:justify-start">
+          <Button
+            onClick={() => setShowPreview(true)}
+            variant="outline"
+            className="w-full sm:w-auto"
+          >
+            <Eye className="mr-2 h-4 w-4" />
+            {t("previewBtn")}
+          </Button>
 
-        <Button
-          onClick={() => router.replace("/dashboard")}
-          variant="secondary"
-        >
-          {t("goHomeBtn")}
-        </Button>
+          <Button
+            onClick={handleDownloadReport}
+            className="bg-blue-600 w-full sm:w-auto"
+          >
+            <Download className="mr-2 h-4 w-4" />
+            {t("downloadBtn")}
+          </Button>
+
+          <Button
+            onClick={() => router.replace("/dashboard")}
+            variant="secondary"
+            className="w-full sm:w-auto"
+          >
+            {t("goHomeBtn")}
+          </Button>
+        </div>
       </div>
     </div>
   );
