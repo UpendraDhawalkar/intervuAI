@@ -71,7 +71,7 @@ const steps = [
   {
     id: "questions1",
     title: "9. Questions Section (Experience)",
-    image: "/screenshots/QueExperience.png",
+    image: "/screenshots/queExperience.png",
     description:
       "Select your experience level (0–2, 2–5, or 5+ years). The difficulty and depth of questions adapt to your level.",
   },
